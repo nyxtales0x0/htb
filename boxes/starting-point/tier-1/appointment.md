@@ -68,7 +68,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 
 - opened `http://10.129.56.206` in browser
 
-![[Pasted image 20230316231358.png]]
+(https://github.com/nyxtales0x0/htb/blob/master/boxes/starting-point/tier-1/images/Pasted%20image%2020230316231358.png?raw=true)
 
 - tried sql injection to bypass login
 
@@ -79,7 +79,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 
 - got the flag
 
-![[Pasted image 20230316231208.png]]
+(https://github.com/nyxtales0x0/htb/blob/master/boxes/starting-point/tier-1/images/Pasted%20image%2020230316231208.png?raw=true)
 
 ## Tasks
 
