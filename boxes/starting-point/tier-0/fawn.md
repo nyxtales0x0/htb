@@ -1,3 +1,102 @@
+## Walkthrough
+
+- performed nmap scan on target ip
+
+```
+┌─[birb@parrot]─[~]
+└──╼ $nmap 10.129.103.221
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-16 13:51 IST
+Nmap scan report for 10.129.103.221
+Host is up (0.73s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+21/tcp open  ftp
+
+Nmap done: 1 IP address (1 host up) scanned in 55.32 seconds
+```
+
+```
+┌─[birb@parrot]─[~]
+└──╼ $nmap 10.129.103.221 -sC -sV -p 21
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-16 13:49 IST
+Nmap scan report for 10.129.103.221
+Host is up (0.36s latency).
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_-rw-r--r--    1 0        0              32 Jun 04  2021 flag.txt
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.10.16.25
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 3
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 11.44 seconds
+```
+
+- connected to ftp port using
+
+```
+┌─[birb@parrot]─[~]
+└──╼ $ftp 10.129.103.221
+Connected to 10.129.103.221.
+220 (vsFTPd 3.0.3)
+Name (10.129.103.221:birb): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp>
+```
+
+-  found `flag.txt`
+
+```
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0              32 Jun 04  2021 flag.txt
+226 Directory send OK.
+```
+
+- transfered `flag.txt` to local machine using `get`
+
+```
+ftp> get flag.txt
+local: flag.txt remote: flag.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for flag.txt (32 bytes).
+226 Transfer complete.
+32 bytes received in 0.00 secs (208.3333 kB/s)
+```
+
+- exited ftp session
+
+```
+ftp> quit
+221 Goodbye.
+```
+
+- got the flag 
+
+```
+┌─[birb@parrot]─[~]
+└──╼ $cat flag.txt 
+035db21c881520061c53e0536e44f815
+```
+
 ## Tasks
 
 **What does the 3-letter acronym FTP stand for?**
@@ -47,48 +146,3 @@
 **Submit root flag**
 
 => 035db21c881520061c53e0536e44f815
-
-## Nmap scans
-
-```
-┌─[birb@parrot]─[~]
-└──╼ $nmap 10.129.103.221
-Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-16 13:51 IST
-Nmap scan report for 10.129.103.221
-Host is up (0.73s latency).
-Not shown: 999 closed tcp ports (conn-refused)
-PORT   STATE SERVICE
-21/tcp open  ftp
-
-Nmap done: 1 IP address (1 host up) scanned in 55.32 seconds
-```
-
-```
-┌─[birb@parrot]─[~]
-└──╼ $nmap 10.129.103.221 -sC -sV -p 21
-Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-16 13:49 IST
-Nmap scan report for 10.129.103.221
-Host is up (0.36s latency).
-
-PORT   STATE SERVICE VERSION
-21/tcp open  ftp     vsftpd 3.0.3
-| ftp-anon: Anonymous FTP login allowed (FTP code 230)
-|_-rw-r--r--    1 0        0              32 Jun 04  2021 flag.txt
-| ftp-syst: 
-|   STAT: 
-| FTP server status:
-|      Connected to ::ffff:10.10.16.25
-|      Logged in as ftp
-|      TYPE: ASCII
-|      No session bandwidth limit
-|      Session timeout in seconds is 300
-|      Control connection is plain text
-|      Data connections will be plain text
-|      At session startup, client count was 3
-|      vsFTPd 3.0.3 - secure, fast, stable
-|_End of status
-Service Info: OS: Unix
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 11.44 seconds
-```
