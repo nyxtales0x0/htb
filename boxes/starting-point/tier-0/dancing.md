@@ -75,7 +75,7 @@ smb: \>
 mount -t cifs //10.129.163.162/WorkShares /path/to/mount/point
 ```
 
-- secured `flag.txt` using `get` command
+- transfered `flag.txt` to local machine using `get`
 
 ```
 WorkShares/
