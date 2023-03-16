@@ -3,7 +3,7 @@
 - performed nmap scan on target ip
 
 ```
-┌─[birb@parrot]─[~]
+┌─[birb@coffee]─[~]
 └──╼ $nmap 10.129.103.221
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-16 13:51 IST
 Nmap scan report for 10.129.103.221
@@ -16,7 +16,7 @@ Nmap done: 1 IP address (1 host up) scanned in 55.32 seconds
 ```
 
 ```
-┌─[birb@parrot]─[~]
+┌─[birb@coffee]─[~]
 └──╼ $nmap 10.129.103.221 -sC -sV -p 21
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-16 13:49 IST
 Nmap scan report for 10.129.103.221
@@ -48,7 +48,7 @@ Nmap done: 1 IP address (1 host up) scanned in 11.44 seconds
 - connected to ftp port using
 
 ```
-┌─[birb@parrot]─[~]
+┌─[birb@coffee]─[~]
 └──╼ $ftp 10.129.103.221
 Connected to 10.129.103.221.
 220 (vsFTPd 3.0.3)
@@ -92,7 +92,7 @@ ftp> quit
 - got the flag 
 
 ```
-┌─[birb@parrot]─[~]
+┌─[birb@coffee]─[~]
 └──╼ $cat flag.txt 
 035db21c881520061c53e0536e44f815
 ```
