@@ -73,6 +73,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 - tried sql injection to bypass login
 
 > username : birb' or 1=1;#
+> 
 > password : coffee
 >
 > behind the scenes because of the `'` the string ended there and the `or 1=1` part got executed. when combined together it would return true even if the user `birb` is not present. the `#` at the end comments out rest of the sql statement checks on the server side thus making the password check useless.
